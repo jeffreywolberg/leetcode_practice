@@ -21,48 +21,25 @@ public:
             {'M', 1000}
         };
         
-        vector<int> positions;
         int sum = 0;
         int i = 0;
-        for (string &sp : special) {
-            size_t pos;
-            // sp = "TMP";
-            // cout << sp << " " << special[i] << endl;
-
-            if ((pos = s.find(sp)) != string::npos) {
-                cout << pos << " " << sp << " " << s << endl;
-                positions.push_back(pos);
+        while(i < s.length()) {
+            if (find(special.begin(), special.end(), s.substr(i, 2)) != special.end()) {
+                sum -= mapping.at(s[i]);
+                sum += mapping.at(s[i+1]);
+                i += 2;
             }
-            i++;
-        }
-        i = 0;
-        for (char &c : s) {
-            if (positions.size() > 0) {
-                if (i == positions[0]) {
-                    i += 1;
-                    sum -= mapping.at(c);
-                    cout << c << " " << mapping.at(c) << " " << sum << endl;
-                    continue;
-                }
-                else if (i-1 == positions[0]) {
-                    i += 1;
-                    positions.erase(positions.begin());
-                    sum += mapping.at(c);
-                    cout << c << " " << mapping.at(c) << " " << sum << endl;
-                    continue;
-                }
+            else {
+                sum += mapping.at(s[i]);
+                i += 1;
             }
-            sum += mapping.at(c);
-            cout << c << " " << mapping.at(c) << " " << sum << endl;
-            i += 1;
         }
         return sum;
     }
 };
 
 int main() {
-    Solution sol = Solution();
-    int num = sol.romanToInt("MCMXCIV");
+    int num = Solution().romanToInt("LVIII");
     cout << num << endl;
     return 0;
 }
