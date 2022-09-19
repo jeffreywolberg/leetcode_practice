@@ -4,8 +4,6 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         hashMap = defaultdict(list)
         for s in strs:
-            letters = sorted(set(s))
-            freq = [s.count(l) for l in letters]
-            letters.extend(freq)
+            letters = sorted(s)
             hashMap[tuple(letters)].append(s)
         return hashMap.values()
