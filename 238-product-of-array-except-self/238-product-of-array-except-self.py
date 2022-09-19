@@ -20,7 +20,7 @@ class Solution:
         
         return output
     
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
+    def productExceptSelf3(self, nums: List[int]) -> List[int]:
         L, R = [], []
         for i, n in enumerate(nums):
             if i == 0:
@@ -47,6 +47,24 @@ class Solution:
         print(output)
         return output
                 
+        
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        L, R = [], 1
+        for i, n in enumerate(nums):
+            if i == 0:
+                L.append(1)
+            else:
+                L.append(nums[i-1]*L[i-1])
+               
+        output = []
+        print(nums)
+        print(L)
+        for i in range(len(nums)-1, -1, -1):
+            output.append(L[i] * R)
+            R *= nums[i]
+        
+        return output[::-1]
+            
             
     
             
