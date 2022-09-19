@@ -1,5 +1,5 @@
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
+    def productExceptSelf2(self, nums: List[int]) -> List[int]:
         output = []
         total_prod = 1
         has_zero = False
@@ -29,6 +29,7 @@ class Solution:
                 L.append(nums[i-1]*L[i-1])
         
         nums_rev = nums[::-1]
+        
         for i, n in enumerate(nums_rev):
             if i == 0:
                 R.append(1)
