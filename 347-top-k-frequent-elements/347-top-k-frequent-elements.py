@@ -10,9 +10,6 @@ class Solution:
                 hashMapFreq[hashMapLetter[n]-1].remove(n)
             hashMapFreq[hashMapLetter[n]].append(n)
             
-        print(hashMapFreq)
-            
-        # while k > 0:
         freqKeys = list(hashMapFreq.keys())
         output = []
         for key in freqKeys[::-1]:
