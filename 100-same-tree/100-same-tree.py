@@ -16,5 +16,5 @@ class Solution:
             return False
         
         else:
-            return all([self.isSameTree(p.left, q.left), self.isSameTree(p.right, q.right)])
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
         
