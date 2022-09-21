@@ -25,7 +25,7 @@ class Solution:
         return output
     
     
-    def threeSum(self, nums):
+    def threeSum3(self, nums):
         dups = set()
         seen = {}
         output = set()
@@ -41,7 +41,39 @@ class Solution:
                     seen[val2] = i
                     
         return output
-                        
+
+    def twoSum(self, nums, i, j, target):
+        hashset = {}
+        output = []
+        while(i < j):
+            num_sum = nums[i] + nums[j]
+            if num_sum == target:
+                output.append([i, j])
+                i += 1
+                j -= 1
+            elif num_sum < target:
+                i += 1
+            elif num_sum > target:
+                j -= 1
+            
+        return output
+            
+    
+    def threeSum(self, nums):
+        nums = sorted(nums)
+        print(nums)
+        output = set()
+        for i, n in enumerate(nums):
+            if n > 0:
+                return output
+            if i == 0 or nums[i] != nums[i-1]:
+                target = -nums[i]
+                print(target)
+                valid_inds = self.twoSum(nums, i+1, len(nums)-1, target)
+                for i_sol, j_sol in valid_inds:
+                    output.add(tuple(sorted([nums[i_sol], nums[j_sol], nums[i]])))
+        
+        return output
                 
             
         
