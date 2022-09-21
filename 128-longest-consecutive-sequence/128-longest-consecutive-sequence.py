@@ -1,5 +1,3 @@
-from collections import Counter 
-
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         keys = set(nums)
