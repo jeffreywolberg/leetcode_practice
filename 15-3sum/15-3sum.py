@@ -25,17 +25,18 @@ class Solution:
         return output
     
     
-    def threeSum3(self, nums):
+    def threeSum(self, nums):
         dups = set()
         seen = {}
         output = set()
         for i, val1 in enumerate(nums):
             if val1 not in dups:
                 dups.add(val1)
-            
+                # seen[val1] = 1
                 for j, val2 in enumerate(nums[i+1:]):
                     complement = -val1 - val2
                     if complement in seen and seen[complement] == i:
+                        # and seen[complement] == i:
                         output.add(tuple(sorted([val1, val2, complement])))
                     
                     seen[val2] = i
@@ -59,7 +60,7 @@ class Solution:
         return output
             
     
-    def threeSum(self, nums):
+    def threeSum4(self, nums):
         nums = sorted(nums)
         print(nums)
         output = set()
