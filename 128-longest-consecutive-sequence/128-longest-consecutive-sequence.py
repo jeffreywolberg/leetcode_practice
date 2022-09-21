@@ -7,7 +7,7 @@ class Solution:
             seq = [n]
             i = 1
             while n-i in keys:
-                seq.insert(0, n-i)
+                seq.append(n-i)
                 keys.remove(n-i)
                 i += 1
             i = 1
@@ -15,6 +15,7 @@ class Solution:
                 seq.append(n+i)
                 keys.remove(n+i)
                 i += 1
+                
             if len(seq) > len(longest_seq):
                 longest_seq = seq
                 
