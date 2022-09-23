@@ -5,7 +5,7 @@ class Solution:
         for i, p in enumerate(prices):
             if p-prices[left] > maxProf:
                 maxProf = p-prices[left]
-            if p < prices[left]:
+            elif p < prices[left]:
                 left = i
             
         return maxProf
