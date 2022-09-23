@@ -3,19 +3,19 @@ from collections import Counter
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         count = Counter()
-        start = 0
-        long_sub_len = 0
         left = 0
-        for r, l in enumerate(s):
-            count[l] += 1
+        long_sub = 0
+        for right, r_letter in enumerate(s):
+            count[r_letter] += 1
+            if r_letter in count:
+                while(count[r_letter] > 1):
+                    count[s[left]] -= 1
+                    left += 1
+                    
+            long_sub = max(right-left+1,  long_sub)
             
-            while count[l] > 1:
-                count[s[left]] -= 1
-                left += 1
-            
-            long_sub_len = max(long_sub_len, r - left + 1)
-            
-        return long_sub_len
+        
+        return long_sub
                 
             
             
