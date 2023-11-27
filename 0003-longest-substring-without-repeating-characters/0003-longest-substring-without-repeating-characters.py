@@ -2,28 +2,18 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        longest_substr = ""
-        substr = ""
-        i = 0
-        j = 0 # inclusive
+        res = 0
+        l = 0
         letter_set = set()
         
-        while i < len(s) and j < len(s):
-            if s[j] not in letter_set:
-                letter_set.add(s[j])
-                j += 1
-                if j-i > len(longest_substr):
-                    longest_substr = s[i:j]
-            else:
-                popped_c = s[i]
-                letter_set.remove(s[i])
-                i += 1
-                while i < len(s) and popped_c != s[j]:
-                    popped_c = s[i]
-                    letter_set.remove(s[i])
-                    i += 1
-                
-        return len(longest_substr)
+        for r in range(len(s)):
+            while s[r] in letter_set:
+                letter_set.remove(s[l])
+                l += 1
+        
+            letter_set.add(s[r])
+            res = max(r-l+1, res)
+        return res
             
                 
         
