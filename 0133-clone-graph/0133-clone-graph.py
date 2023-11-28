@@ -8,23 +8,22 @@ class Node:
 
 from typing import Optional
 class Solution:
+    def __init__(self):
+        self.mapOfNodes = {}
     
-    def cloneGraph(self, node: 'Optional[Node]', mapOfNodes=None) -> 'Optional[Node]':
+    def cloneGraph(self, node: 'Optional[Node]') -> 'Optional[Node]':
         if node is None:
             return None
 
-        if mapOfNodes is None:
-            mapOfNodes = {}
+        if node.val in self.mapOfNodes:
+            return self.mapOfNodes[node.val]
 
-        if node.val in mapOfNodes:
-            return mapOfNodes[node.val]
-
-        mapOfNodes[node.val] = Node(node.val, [])
+        self.mapOfNodes[node.val] = Node(node.val, [])
         for neighb in node.neighbors:
-            cloned_neighb = self.cloneGraph(neighb, mapOfNodes)
-            mapOfNodes[node.val].neighbors.append(cloned_neighb)
+            cloned_neighb = self.cloneGraph(neighb)
+            self.mapOfNodes[node.val].neighbors.append(cloned_neighb)
 
-        return mapOfNodes[node.val]
+        return self.mapOfNodes[node.val]
         
         # out = []
         # numNodes = len(mapOfNodes)
