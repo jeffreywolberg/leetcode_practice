@@ -1,3 +1,5 @@
+from collections import deque
+
 class Solution:
     def dfs(self, grid, y, x):
         if x < 0 or x >= len(grid[0]):
@@ -14,9 +16,9 @@ class Solution:
         self.dfs(grid, y+1, x) # up
     
     def bfs(self, grid, y, x):
-        queue = [(y,x)]
+        queue = deque([(y,x)])
         while queue:
-            y, x = queue.pop(0)
+            y, x = queue.popleft()
             if y < 0 or y >= len(grid) or x < 0 or x >= len(grid[0]):
                 continue
             elif grid[y][x] == "1":
